@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dashboardReducer from "./dashboardSlice"; // Import fuelSlice
+import dashboardReducer from "./dashboard/dashboardSlice";
+import authReducer from "./auth/authSlice";
 
 export const store = configureStore({
   reducer: {
-    dashboard: dashboardReducer, // Tambahkan fuel ke reducer
+    dashboard: dashboardReducer,
+    auth: authReducer,
   },
 });
 

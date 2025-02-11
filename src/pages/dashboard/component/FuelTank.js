@@ -4,7 +4,7 @@ import BarellIcon from "../../../assets/icon/barrel-icon";
 import RightArrow from "../../../assets/icon/right-arrow";
 import LeftArrow from "../../../assets/icon/left-arrow";
 import { useDispatch, useSelector } from "react-redux";
-import { setFuelStatus } from "../../../store/dashboardSlice";
+import { setFuelStatus } from "../../../store/dashboard/dashboardSlice";
 
 const FuelTank = () => {
   const dispatch = useDispatch();

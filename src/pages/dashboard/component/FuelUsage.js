@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import client from "../../../utils/mqttClient";
 import { useDispatch, useSelector } from "react-redux";
-import { setFuelUsage } from "../../../store/dashboardSlice";
+import { setFuelUsage } from "../../../store/dashboard/dashboardSlice";
 
 const FuelUsage = () => {
   const dispatch = useDispatch();

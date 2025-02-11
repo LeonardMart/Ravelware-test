@@ -5,12 +5,15 @@ import moment from "moment";
 import "moment/locale/id";
 import SearchIcon from "../../assets/icon/search-icon";
 import getInitials from "../../utils/getInitials";
+import { useDispatch, useSelector } from "react-redux";
+import { resetAuth } from "../../store/auth/authSlice";
 
 export default function Navbar({ toggleSidebar }) {
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.userInfo); // Ambil data user dari Redux
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
   const [search, setSearch] = useState("");
-  const [userInfo, setUserInfo] = useState("User");
 
   useEffect(() => {
     moment.locale("id");
@@ -23,6 +26,10 @@ export default function Navbar({ toggleSidebar }) {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const logoutHandler = () => {
+    dispatch(resetAuth());
+  };
 
   return (
     <nav className="sticky top-0 bg-gray-950 text-white p-4 flex items-center justify-between">
@@ -52,13 +59,15 @@ export default function Navbar({ toggleSidebar }) {
 
         <div className="flex flex-row space-x-2 items-center">
           <div className="bg-gray-300 rounded-full w-9 h-9 flex text-white items-center justify-center text-xs font-medium">
-            <span className="text-gray-500 text-lg font-bold">{getInitials(userInfo ?? "")}</span>
+            <span className="text-gray-500 text-lg font-bold">
+              {getInitials(user ? user : "-")}
+            </span>
           </div>
           <button
             onClick={() => setOpen(!open)}
             className="flex flex-row space-x-2 items-center"
           >
-            <span className="text-lg">user</span>
+            <span className="text-lg max-w-[100px] truncate">{user}</span>
             <span className="text-sm">▼</span>
           </button>
         </div>
@@ -73,7 +82,12 @@ export default function Navbar({ toggleSidebar }) {
                 Edit Profile
               </li>
               <li className="p-2 hover:bg-gray-200 cursor-pointer">Settings</li>
-              <li className="p-2 hover:bg-gray-200 cursor-pointer">Logout</li>
+              <li
+                onClick={logoutHandler}
+                className="p-2 hover:bg-gray-200 cursor-pointer"
+              >
+                Logout
+              </li>
             </ul>
           </div>
         )}

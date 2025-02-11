@@ -11,7 +11,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useDispatch, useSelector } from "react-redux";
-import { setCarUsage } from "../../../store/dashboardSlice";
+import { setCarUsage } from "../../../store/dashboard/dashboardSlice";
 
 const TopCarUsage = () => {
   const dispatch = useDispatch();
