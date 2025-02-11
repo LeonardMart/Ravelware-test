@@ -21,8 +21,7 @@ const options = {
 const client = mqtt.connect(MQTT_BROKER, options);
 
 client.on("connect", () => {
-  //   console.log("MQTT Connected!");
-  // Subscribe ke semua topik yang dibutuhkan
+
   MQTT_TOPICS.forEach((topic) => client.subscribe(topic, { qos: 1 }));
 });
 

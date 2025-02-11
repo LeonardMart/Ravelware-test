@@ -8,6 +8,8 @@
     "@umakantp/react-date-range": "^2.2.0",
     "cra-template": "1.2.0",
     "date-fns": "^3.6.0",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "lucide-react": "^0.475.0",
     "moment": "^2.30.1",
     "mqtt": "^5.10.3",

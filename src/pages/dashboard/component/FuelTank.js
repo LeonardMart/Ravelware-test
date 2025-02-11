@@ -106,7 +106,10 @@ const FuelTank = () => {
                         </div>
                       </div>
 
-                      <div>Status: {item.status}</div>
+                      <div className="flex flex-row space-x-1.5">
+                        <div>Status:</div>
+                        <div className="uppercase">{item.status}</div>
+                      </div>
                     </div>
                   </div>
                 );

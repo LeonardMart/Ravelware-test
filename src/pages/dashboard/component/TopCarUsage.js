@@ -22,7 +22,6 @@ const TopCarUsage = () => {
       if (topic === "test/top-5-car-usage") {
         try {
           const data = JSON.parse(message.toString());
-          console.log("check",data)
           dispatch(setCarUsage(data));
         } catch (error) {
           console.error("Error parsing MQTT message:", error);

@@ -10,7 +10,7 @@ import { resetAuth } from "../../store/auth/authSlice";
 
 export default function Navbar({ toggleSidebar }) {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.userInfo); // Ambil data user dari Redux
+  const user = useSelector((state) => state.auth.userInfo)
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
   const [search, setSearch] = useState("");

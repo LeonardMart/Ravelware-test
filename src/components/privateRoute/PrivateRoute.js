@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import Layout from "../../pages";
 
 const PrivateRoute = () => {
-  const user = useSelector((state) => state.auth.userInfo); // Ambil data user dari Redux
-  console.log("check", user)
+  const user = useSelector((state) => state.auth.userInfo);
   return user ? (
     <Layout>
       <Outlet />

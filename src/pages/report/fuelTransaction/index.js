@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import { parseISO, format } from "date-fns";
 import CalendarIcon from "../../../assets/icon/calendar-icon";
 import DocumentIcon from "../../../assets/icon/document-icon";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const data = [
   {
@@ -413,6 +415,44 @@ const FuelTransaction = () => {
     setIsModalOpen(false);
   };
 
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Fuel Transaction History", 14, 10);
+
+    const tableColumn = [
+      "ID",
+      "Date",
+      "Station",
+      "Name",
+      "License",
+      "Fuel Type",
+      "Usage",
+      "Leftover",
+    ];
+    const tableRows = [];
+
+    filteredData.forEach((item) => {
+      tableRows.push([
+        item.id,
+        format(parseISO(item.time), "MMM d, yyyy HH:mm:ss"),
+        item.station,
+        item.name,
+        item.license,
+        item.fuel,
+        item.usage,
+        item.leftover,
+      ]);
+    });
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+    });
+
+    doc.save("Fuel_Transaction_History.pdf");
+  };
+
   return (
     <div>
       <DateFilterModal
@@ -433,7 +473,10 @@ const FuelTransaction = () => {
             <span>{selectedDate}</span>
             <span>▼</span>
           </button>
-          <button className="border-gray-300 border-[1px] text-white px-4 py-1 rounded-md flex items-center space-x-2">
+          <button
+            onClick={exportToPDF}
+            className="border-gray-300 border-[1px] text-white px-4 py-1 rounded-md flex items-center space-x-2"
+          >
             <span>Export</span>
             <DocumentIcon className="text-white w-4 h-auto" />
           </button>
