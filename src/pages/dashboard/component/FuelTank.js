@@ -5,6 +5,7 @@ import RightArrow from "../../../assets/icon/right-arrow";
 import LeftArrow from "../../../assets/icon/left-arrow";
 import { useDispatch, useSelector } from "react-redux";
 import { setFuelStatus } from "../../../store/dashboard/dashboardSlice";
+import { formatDistanceToNow, parseISO } from "date-fns";
 
 const FuelTank = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const FuelTank = () => {
       if (topic === "test/realtime") {
         try {
           const data = JSON.parse(message.toString());
+          console.log("check", data);
           dispatch(setFuelStatus(data));
         } catch (error) {
           console.error("Error parsing MQTT message:", error);
@@ -28,6 +30,11 @@ const FuelTank = () => {
       client.off("message", handleMessage);
     };
   }, [dispatch]);
+
+  const getTimeAgo = (dateString) => {
+    const date = parseISO(dateString);
+    return formatDistanceToNow(date, { addSuffix: true }); // ex: "5 minutes ago"
+  };
 
   const scroll = (direction) => {
     if (scrollContainerRef.current) {
@@ -102,7 +109,9 @@ const FuelTank = () => {
                           <div>
                             {item.current_stock}/{item.maxium_stock}L
                           </div>
-                          <div className="text-xs">27 minutes ago</div>
+                          <div className="text-xs">
+                            {getTimeAgo(item.updated_at)}
+                          </div>
                         </div>
                       </div>
 

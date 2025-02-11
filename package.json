@@ -15,12 +15,10 @@
     "mqtt": "^5.10.3",
     "react": "^19.0.0",
     "react-data-table-component": "^7.6.2",
-    "react-datepicker": "^8.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
-    "react-tailwindcss-datepicker": "^2.0.0",
     "recharts": "^2.15.1"
   },
   "scripts": {
