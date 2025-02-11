@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RavelwareLogo from "../../assets/logo/ravelware-logo";
 
 export default function Sidebar({ isOpen }) {
   const [isReportOpen, setReportOpen] = useState(false);
+  const location = useLocation(); // Ambil lokasi URL saat ini
+
+  // Fungsi untuk mengecek apakah link sedang aktif
+  const isActive = (path) => location.pathname === path;
 
   return (
     <div
@@ -18,7 +22,12 @@ export default function Sidebar({ isOpen }) {
       <nav>
         <ul className="space-y-4">
           <li>
-            <Link to="/" className="block p-2 hover:bg-gray-700 rounded">
+            <Link
+              to="/"
+              className={`block p-2 rounded ${
+                isActive("/") ? "bg-blue-600" : "hover:bg-gray-700"
+              }`}
+            >
               Dashboard
             </Link>
           </li>
@@ -37,7 +46,11 @@ export default function Sidebar({ isOpen }) {
                 <li>
                   <Link
                     to="/report/fuel-transaction-history"
-                    className="block p-2 hover:bg-gray-700 rounded"
+                    className={`block p-2 rounded ${
+                      isActive("/report/fuel-transaction-history")
+                        ? "bg-blue-600"
+                        : "hover:bg-gray-700"
+                    }`}
                   >
                     Fuel Transaction History
                   </Link>
@@ -45,7 +58,11 @@ export default function Sidebar({ isOpen }) {
                 <li>
                   <Link
                     to="/report/machine-usage"
-                    className="block p-2 hover:bg-gray-700 rounded"
+                    className={`block p-2 rounded ${
+                      isActive("/report/machine-usage")
+                        ? "bg-blue-600"
+                        : "hover:bg-gray-700"
+                    }`}
                   >
                     Machine Usage
                   </Link>
@@ -53,7 +70,11 @@ export default function Sidebar({ isOpen }) {
                 <li>
                   <Link
                     to="/report/man-power-usage"
-                    className="block p-2 hover:bg-gray-700 rounded"
+                    className={`block p-2 rounded ${
+                      isActive("/report/man-power-usage")
+                        ? "bg-blue-600"
+                        : "hover:bg-gray-700"
+                    }`}
                   >
                     Manpower Usage
                   </Link>
@@ -63,20 +84,32 @@ export default function Sidebar({ isOpen }) {
           </li>
 
           <li>
-            <Link to="/history" className="block p-2 hover:bg-gray-700 rounded">
+            <Link
+              to="/history"
+              className={`block p-2 rounded ${
+                isActive("/history") ? "bg-blue-600" : "hover:bg-gray-700"
+              }`}
+            >
               History
             </Link>
           </li>
           <li>
             <Link
               to="/management"
-              className="block p-2 hover:bg-gray-700 rounded"
+              className={`block p-2 rounded ${
+                isActive("/management") ? "bg-blue-600" : "hover:bg-gray-700"
+              }`}
             >
               Management
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="block p-2 hover:bg-gray-700 rounded">
+            <Link
+              to="/profile"
+              className={`block p-2 rounded ${
+                isActive("/profile") ? "bg-blue-600" : "hover:bg-gray-700"
+              }`}
+            >
               Profile
             </Link>
           </li>
