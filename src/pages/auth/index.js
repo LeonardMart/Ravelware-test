@@ -9,6 +9,7 @@ const Auth = () => {
   const [username, setUsername] = useState("");
 
   const loginHandler = () => {
+    if (username.trim() === "") return;
     dispatch(setUserInfo(username));
     navigate("/");
   };
@@ -22,7 +23,8 @@ const Auth = () => {
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-gray-500 focus:outline-none text-white"
+              onKeyDown={(e) => e.key === "Enter" && loginHandler()}
+              className="bg-gray-500 focus:outline-none text-white w-52"
             />
           </div>
         </div>
